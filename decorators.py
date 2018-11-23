@@ -3,6 +3,7 @@
 import random
 import time
 import rfw_state
+import traceback
 
 def conv_args(args):
     return [repr(x) for x in args]
@@ -45,11 +46,10 @@ def keyword(fun):
 
             listener_args["status"] = "PASS"
             listener_args["message"] = ""
-        except AssertionError as e:
+        except Exception as e:
             listener_args["status"] = "FAIL"
             listener_args["message"] = repr(e)
-
-            raise e
+            raise
         finally:
             end = time.time()
 
@@ -96,13 +96,18 @@ def testcase(fun):
         except AssertionError as e:
             listener_args["status"] = "FAIL"
             listener_args["message"] = repr(e)
+        except Exception as e:
+            listener_args["status"] = "FAIL"
+            listener_args["message"] = repr(e)
+            traceback.print_exc()
+        finally:
 
-        end = time.time()
+            end = time.time()
 
-        listener_args["endtime"] = to_time(end)
-        listener_args["elapsedtime"] = str(int((end - start) * 1000))
-        listener_args["timeout"] = 0    # todo
-        listener.end_test(name, listener_args)
+            listener_args["endtime"] = to_time(end)
+            listener_args["elapsedtime"] = str(int((end - start) * 1000))
+            listener_args["timeout"] = 0    # todo
+            listener.end_test(name, listener_args)
 
     return decorator
 

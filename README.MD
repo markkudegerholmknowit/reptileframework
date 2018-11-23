@@ -32,9 +32,13 @@ First, run the PoC SUT (Software Under testing) in one terminal:
 
 ./gameserver.py
 
-Then, in an another terminal, run the test suite:
+Then, open an another terminal for running the tests:
 
-./reptileframework.py  ./testgameserver.py
+Set PYTHONPATH to point to your Robot FW installation location (one with "robot" subdirectory):
+export PYTHONPATH=$PYTHONPATH:/usr/local/lib/python2.7/dist-packages/robotframework-3.0.3.dev20170213-py2.7.egg
+
+Then run the actual tests:
+./reptileframework.py ./testgameserver.py
 
 To get HTML log and report, run:
 
@@ -64,5 +68,7 @@ There are also some other decorators, see decorators.py for details.
 A lot. Fortunately, PyUnit stuff can be used to some extent.
 
 Tagging system exists, but is not yet tested.
+
+Exception & error handling probably needs a lot of attention.
 
 In general, the framework is not properly tested yet.
