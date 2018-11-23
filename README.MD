@@ -26,23 +26,26 @@ output logger of Robot Framework in order to generate the XML log file. Also,
 rebot command of Robot Framework will be needed in order to convert the XML log
 files into HTML log files.
 
+Currently RepFW is tested with Robot Framework version 3.0.3.
+
 ## Running the PoC
 
 First, run the PoC SUT (Software Under testing) in one terminal:
 
-./gameserver.py
+`./gameserver.py`
 
 Then, open an another terminal for running the tests:
 
-Set PYTHONPATH to point to your Robot FW installation location (one with "robot" subdirectory):
-export PYTHONPATH=$PYTHONPATH:/usr/local/lib/python2.7/dist-packages/robotframework-3.0.3.dev20170213-py2.7.egg
+Set PYTHONPATH to point to your Robot FW installation location (one with "robot" subdirectory), for example:
+
+`export PYTHONPATH=$PYTHONPATH:/usr/local/lib/python2.7/dist-packages/robotframework-3.0.3.dev20170213-py2.7.egg`
 
 Then run the actual tests:
-./reptileframework.py ./testgameserver.py
+`./reptileframework.py ./testgameserver.py`
 
 To get HTML log and report, run:
 
-rebot out.xml
+`rebot out.xml`
 
 ## Writing test suites, test cases and keywords
 
